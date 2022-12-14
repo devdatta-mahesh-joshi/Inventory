@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package inventory;
+
+message Date {
+        // Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+        // a year.
+        int32 year = 1;
+
+        // Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+        // month and day.
+        int32 month = 2;
+
+        // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+        // to specify a year by itself or a year and month where the day isn't
+        // significant.
+        int32 day = 3;
+}
+
+message Book {
+    optional string ISBN = 1;
+    optional string title = 2;
+    optional string author = 3;
+
+    enum genres {
+        FANTASY = 0;
+        CLASSICS = 1;
+        SCIFI = 2;
+        HUMOR = 3;
+        WAR = 4;
+    }
+
+    optional genres genre = 4;
+
+    optional Date publishingYear = 5;
+
+}
+
+message InventoryItem {
+    optional int32 inventoryNumber = 1;
+
+    oneof books {
+        Book b = 2;
+    }
+
+    enum statuses {
+        AVAILABLE = 0;
+        TAKEN = 1;
+    }
+
+    optional statuses status = 3;
+}
+

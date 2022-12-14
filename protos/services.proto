@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package inventory;
+
+import "library.proto";
+
+service InventoryService {
+
+    rpc CreateBook (CreateBookRequest) returns (CreateBookResponse) {}
+
+    rpc GetBook (GetBookRequest) returns (GetBookResponse) {}
+
+}
+
+message CreateBookRequest {
+    optional Book book = 1;
+}
+
+message CreateBookResponse {
+    optional Book book = 1;
+}
+
+message GetBookRequest {
+    optional string book = 1;
+}
+
+message GetBookResponse {
+    optional Book book = 1;
+}
